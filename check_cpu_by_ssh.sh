@@ -61,9 +61,13 @@ while getopts ":H:u:w:c:d:m:" opt; do
 done
 
 #Get the first and second dataset within the configured timeperiod.
-CPU_1=`ssh -t $USER@$HOST "grep -i '^cpu ' /proc/stat" 2> /dev/null | awk '{ printf("%i %i %i %i", $2, $3, $4, $5); }'`
+CPU_1=`ssh -t $USER@$HOST "grep -i '^cpu ' /proc/stat" 2> /dev/null`
+CPU_1=`echo $CPU_1 | awk '{ print $2 " " $3 " " $4 " " $5 }'`
 sleep $DELAY
-CPU_2=`ssh -t $USER@$HOST "grep -i '^cpu ' /proc/stat" 2> /dev/null | awk '{ printf("%i %i %i %i", $2, $3, $4, $5); }'`
+CPU_2=`ssh -t $USER@$HOST "grep -i '^cpu ' /proc/stat" 2> /dev/null`
+CPU_2=`echo $CPU_2 | awk '{ print $2 " " $3 " " $4 " " $5 }'`
+echo $CPU_1
+echo $CPU_2
 
 echo "$MODE $CPU_1 $CPU_2 $WARNING $CRITICAL" | awk '{
 	#Sets the mode
