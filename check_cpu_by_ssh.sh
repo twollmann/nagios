@@ -111,26 +111,26 @@ echo "$MODE $CPU_1 $CPU_2 $WARNING $CRITICAL" | awk '{
 	#The performance data are going to be interpreted.
         if(perf_curr < perf_warn && perf_curr < perf_crit)
         {
-                printf("CPU OK - Utilization: %.1f%;", perf_curr);
+                printf("CPU OK - Utilization: %.1f%%;", perf_curr);
                 errorcode = 0;
         }
         else if(perf_curr >= perf_warn && perf_curr < perf_crit)
         {
-                printf("CPU WARNING - Utilization: %.1f%;", perf_curr);
+                printf("CPU WARNING - Utilization: %.1f%%;", perf_curr);
                 errorcode = 1;
         }
         else if(perf_curr >= perf_crit)
         {
-                printf("CPU CRITICAL - Utilization: %.1f%;", perf_curr);
+                printf("CPU CRITICAL - Utilization: %.1f%%;", perf_curr);
                 errorcode = 2;
         }
         else
         {
-                printf("CPU UNKNOWN - Utilization: %.1f%;", perf_curr);
+                printf("CPU UNKNOWN - Utilization: %.1f%%;", perf_curr);
                 errorcode = 3;
         }
 
-        printf("\| %s usage=%.1f%;%.1f;%.1f;%.1f;%.1f\n", mode, perf_curr, perf_warn, perf_crit, perf_min, perf_max);
+        printf("\| %s usage=%.1f%%;%.1f;%.1f;%.1f;%.1f\n", mode, perf_curr, perf_warn, perf_crit, perf_min, perf_max);
 
         exit errorcode;
 
